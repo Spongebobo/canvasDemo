@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>radius</title>
+</head>
+<body>
+	<canvas id="canvas" width="800" height="800" style="border: 1px solid #aaa;display:block;margin: 50px auto;">
+		
+	</canvas>
+	<script>
+		//绘制曲线
+		/*context.arc(
+			centerx,centery,radius,
+			startingAngle,endingAngle,
+			anticlockwise=false;
+		)*/
+
+		window.onload=function(){
+			var canvas=document.getElementById('canvas');
+			canvas.width="1024";
+			canvas.height="768";
+			var context=canvas.getContext('2d');
+			context.lineWidth=5;
+			context.strokeStyle="#aaa";
+			//300 300 圆心 200半径 从0开始到1.5个PAI
+			context.arc(300,300,200,0,1.5*Math.PI);
+			/*context.arc(300,300,200,0,1.5*Math.PI,true);
+				true是逆时针绘制
+			*/
+			context.stroke();
+
+
+			for(var i=0;i<10;i++){
+				context.beginPath();
+				context.arc(50+i*100,300,40,0,2*Math.PI*(i+1)/10);
+				context.stroke();
+			}
+			for(var i=0;i<10;i++){
+				context.beginPath();
+				context.arc(50+i*100,420,40,0,2*Math.PI*(i+1)/10,true);
+				context.stroke();
+			}
+			for(var i=0;i<10;i++){
+				context.beginPath();
+				context.arc(50+i*100,520,40,0,2*Math.PI*(i+1)/10,true);
+				context.closePath();//会自动把曲线包住
+				context.stroke();
+			}
+		}
+	</script>
+</body>
+</html>
